@@ -1,68 +1,63 @@
-import { octoflare } from 'octoflare'
-import { PayloadData } from '../types/PayloadData.js'
+import core from '@actions/core'
+import { Octokit } from 'octokit'
+;async () => {
+  const name = core.getInput('name')
+  const action = core.getInput('action')
 
-export default octoflare<PayloadData>(
-  async ({ env, payload, installation }) => {
-    if (!installation) {
-      return new Response('Skip Event: No Installation', {
-        status: 200
-      })
-    }
+  const [owner, repo] = process.env.GITHUB_REPOSITORY?.split('/') ?? []
 
-    // Label Changed
-    if ('label' in payload && payload.label) {
-      const { label, repository, action } = payload
+  const octokit = new Octokit({
+    auth: process.env.GITHUB_TOKEN
+  })
 
-      if (action === 'labeled' || action === 'unlabeled') {
-        return new Response('Skip Event: No Trigger Label Action', {
-          status: 200
-        })
+  const [{ data: base }, { data: allRepo }] = await Promise.all([
+    octokit.rest.issues.getLabel({
+      owner,
+      repo,
+      name
+    }),
+    octokit.rest.repos.listForUser({
+      username: owner
+    })
+  ])
+
+  const result = allRepo
+    .filter((x) => x.name !== repo)
+    .map(async (repo) => {
+      if (action === 'created' || action === 'edited') {
+        try {
+          await octokit.rest.issues.getLabel({
+            owner: repo.owner.login,
+            repo: repo.name,
+            name
+          })
+
+          await octokit.rest.issues.createLabel({
+            owner: repo.owner.login,
+            repo: repo.name,
+            name,
+            color: base.color,
+            description: base.description ?? ''
+          })
+        } catch {
+          octokit.rest.issues.createLabel({
+            owner: repo.owner.login,
+            repo: repo.name,
+            name,
+            color: base.color,
+            description: base.description ?? ''
+          })
+        }
       }
 
-      await installation.startWorkflow({
-        repo: env.OCTOFLARE_APP_REPO,
-        owner: env.OCTOFLARE_APP_OWNER,
-        data: {
-          label,
-          repo: repository.name,
-          owner: repository.owner.login,
-          type: payload.action
-        }
-      })
-
-      return new Response('Unified Labeler Workflow Dispatched', {
-        status: 202
-      })
-    }
-
-    // Repo Created
-    if (
-      'repository' in payload &&
-      payload.repository &&
-      'action' in payload &&
-      payload.action === 'created' &&
-      'sender' in payload &&
-      payload.sender
-    ) {
-      const { repository } = payload
-
-      await installation.startWorkflow({
-        repo: 'unified-labeler',
-        owner: 'jill64',
-        data: {
-          repo: repository.name,
-          owner: repository.owner.login,
-          type: 'repo_created'
-        }
-      })
-
-      return new Response('Unified Labeler Workflow Dispatched', {
-        status: 202
-      })
-    }
-
-    return new Response('Skip Event: No Trigger Event', {
-      status: 200
+      if (action === 'deleted') {
+        await octokit.rest.issues.deleteLabel({
+          owner: repo.owner.login,
+          repo: repo.name,
+          name
+        })
+      }
     })
-  }
-)
+
+  await Promise.allSettled(result)
+}
