@@ -23022,83 +23022,57 @@ action(async ({ payload, octokit }) => {
   class Labeler {
     repo;
     owner;
-    label;
-    constructor(repo2, owner2, label) {
+    old_name = ("changes" in data ? data.changes?.name?.from : null) ?? data.label.name;
+    constructor(repo2, owner2) {
       this.repo = repo2;
       this.owner = owner2;
-      this.label = label;
+    }
+    get() {
+      return octokit.rest.issues.getLabel({
+        owner: this.owner,
+        repo: this.repo,
+        name: this.old_name
+      });
     }
     create() {
       return octokit.rest.issues.createLabel({
         owner: this.owner,
         repo: this.repo,
-        name: this.label.name,
-        color: this.label.color,
-        description: this.label.description ?? ""
+        name: data.label.name,
+        color: data.label.color,
+        description: data.label.description ?? ""
       });
     }
     update() {
-      return octokit.rest.issues.createLabel({
+      return octokit.rest.issues.updateLabel({
         owner: this.owner,
         repo: this.repo,
-        name: this.label.name,
-        color: this.label.color,
-        description: this.label.description ?? ""
+        name: this.old_name,
+        new_name: data.label.name,
+        color: data.label.color,
+        description: data.label.description ?? ""
       });
     }
     delete() {
       return octokit.rest.issues.deleteLabel({
         owner: this.owner,
         repo: this.repo,
-        name: this.label.name
+        name: data.label.name
       });
     }
   }
-  if (data.type === "repo_created") {
-    const [{ data: base }, { data: labels }] = await Promise.all([
-      await octokit.rest.issues.listLabelsForRepo({
-        owner,
-        repo
-      }),
-      await octokit.rest.issues.listLabelsForRepo({
-        owner: data.owner,
-        repo: data.repo
-      })
-    ]);
-    await Promise.all(
-      base.map(async (label) => {
-        const labeler = new Labeler(data.repo, data.owner, label);
-        await (labels.includes(label) ? labeler.update() : labeler.create());
-      })
-    );
-    const { data: newLabels } = await octokit.rest.issues.listLabelsForRepo({
-      owner: data.owner,
-      repo: data.repo
-    });
-    await Promise.all(
-      newLabels.map(async (label) => {
-        if (!base.includes(label)) {
-          const labeler = new Labeler(data.repo, data.owner, label);
-          await labeler.delete();
-        }
-      })
-    );
-    return;
-  }
-  const result = allRepo.filter((x) => x.name !== data.repo).map(async (repo2) => {
-    const { data: labels } = await octokit.rest.issues.listLabelsForRepo({
-      owner: repo2.owner.login,
-      repo: repo2.name
-    });
-    const label = new Labeler(repo2.name, repo2.owner.login, data.label);
+  const result = allRepo.filter((x) => x.name !== repo).map(async (repo2) => {
+    const labeler = new Labeler(repo2.name, repo2.owner.login);
     if (data.type === "deleted") {
-      return await label.delete();
+      return await labeler.delete();
     }
-    if (data.type === "created") {
-      return await label.create();
-    }
-    if (data.type === "edited") {
-      await (labels.includes(data.label) ? label.update() : label.create());
+    if (data.type === "created" || data.type === "edited") {
+      try {
+        await labeler.get();
+        await labeler.update();
+      } catch {
+        await labeler.create();
+      }
     }
   });
   await Promise.allSettled(result);
