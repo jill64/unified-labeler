@@ -1,2 +1,2 @@
-# unified-labeler
-Synchronize All GitHub Labels
+<!----- BEGIN GHOST DOCS HEADER ----->
+<!----- END GHOST DOCS HEADER ----->

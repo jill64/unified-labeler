@@ -1,0 +1,10 @@
+name = "unified-labeler"
+main = "src/index.ts"
+compatibility_date = "2024-02-07"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+
+OCTOFLARE_APP_ID = "820334"
+OCTOFLARE_APP_OWNER = "jill64"
+OCTOFLARE_APP_REPO = "unified-labeler"

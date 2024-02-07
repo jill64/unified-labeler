@@ -1,0 +1,21 @@
+{
+  "name": "unified-labeler",
+  "description": "Synchronize All GitHub Labels",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npx wrangler deploy --dry-run && npm run build:action",
+    "deploy": "npx wrangler deploy",
+    "lint": "npx eslint . && npx depcheck && tsc",
+    "format": "npx prettier -w .",
+    "build:action": "npx tsx action/scripts/build.ts"
+  },
+  "prettier": "@jill64/prettier-config",
+  "devDependencies": {
+    "octoflare": "0.24.7",
+    "esbuild": "0.20.0",
+    "@jill64/prettier-config": "1.0.0",
+    "@jill64/eslint-config-ts": "1.1.0",
+    "typescript": "5.3.3"
+  }
+}
