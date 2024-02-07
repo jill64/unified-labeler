@@ -57,6 +57,8 @@ action<PayloadData>(async ({ payload, octokit }) => {
     }
   }
 
+  console.log(allRepo.map((x) => x.name))
+
   const result = allRepo
     .filter((x) => x.name !== repo)
     .map(async (repo) => {
