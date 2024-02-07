@@ -2,8 +2,11 @@ name: Unified Labeler
 description: GitHub Action for Unified Labeler
 
 inputs:
-  payload:
-    description: Octoflare Payload
+  name:
+    description: Modified Label Name
+    required: true
+  action:
+    description: Modified Label Action
     required: true
 
 runs:

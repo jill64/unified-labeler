@@ -1,9 +1,9 @@
 import { build } from 'esbuild'
 
 build({
-  entryPoints: ['action/src/index.ts'],
+  entryPoints: ['src/index.ts'],
   bundle: true,
   platform: 'node',
   target: 'node20',
-  outfile: 'action/dist/index.cjs'
+  outfile: 'dist/index.cjs'
 })
