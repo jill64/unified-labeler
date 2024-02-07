@@ -1,4 +1,5 @@
 import core from '@actions/core'
+import process from 'node:process'
 import { Octokit } from 'octokit'
 ;async () => {
   const name = core.getInput('name')
