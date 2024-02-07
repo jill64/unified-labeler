@@ -4,18 +4,20 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "npx wrangler deploy --dry-run && npm run build:action",
-    "deploy": "npx wrangler deploy",
+    "build": "npx tsx scripts/build.ts",
     "lint": "npx eslint . && npx depcheck && tsc",
-    "format": "npx prettier -w .",
-    "build:action": "npx tsx action/scripts/build.ts"
+    "format": "npx prettier -w ."
   },
   "prettier": "@jill64/prettier-config",
   "devDependencies": {
-    "octoflare": "0.24.9",
-    "esbuild": "0.20.0",
-    "@jill64/prettier-config": "1.0.0",
     "@jill64/eslint-config-ts": "1.1.0",
+    "@jill64/prettier-config": "1.0.0",
+    "@types/node": "20.11.16",
+    "esbuild": "0.20.0",
     "typescript": "5.3.3"
+  },
+  "dependencies": {
+    "@actions/core": "1.10.1",
+    "octokit": "3.1.2"
   }
 }
