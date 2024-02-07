@@ -2,13 +2,10 @@ name: Unified Labeler
 description: GitHub Action for Unified Labeler
 
 inputs:
-  name:
-    description: Modified Label Name
-    required: true
-  action:
-    description: Modified Label Action
+  payload:
+    description: Octoflare Payload
     required: true
 
 runs:
   using: node20
-  main: dist/index.cjs
+  main: action/dist/index.cjs
