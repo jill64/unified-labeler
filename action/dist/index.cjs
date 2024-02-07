@@ -23061,6 +23061,7 @@ action(async ({ payload, octokit }) => {
       });
     }
   }
+  console.log(allRepo.map((x) => x.name));
   const result = allRepo.filter((x) => x.name !== repo).map(async (repo2) => {
     const labeler = new Labeler(repo2.name, repo2.owner.login);
     if (data.type === "deleted") {
