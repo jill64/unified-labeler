@@ -4,8 +4,9 @@ import { PayloadData } from '../../types/PayloadData.js'
 action<PayloadData>(async ({ payload, octokit }) => {
   const { owner, repo, data } = payload
 
-  const { data: allRepo } = await octokit.rest.repos.listForUser({
-    username: owner
+  const allRepo = await octokit.paginate('GET /users/{username}/repos', {
+    username: owner,
+    per_page: 100
   })
 
   class Labeler {
@@ -56,8 +57,6 @@ action<PayloadData>(async ({ payload, octokit }) => {
       })
     }
   }
-
-  console.log(allRepo.map((x) => x.name))
 
   const result = allRepo
     .filter((x) => x.name !== repo)
