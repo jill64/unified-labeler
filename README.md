@@ -15,6 +15,6 @@ Synchronize All GitHub Labels
 
 ## License
 
-MIT
+[MIT](LICENSE)
 
 <!----- END GHOST DOCS FOOTER ----->
