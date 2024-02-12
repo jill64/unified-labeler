@@ -19707,9 +19707,9 @@ var require_dist_node4 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@octokit+request@8.1.6/node_modules/@octokit/request/dist-node/index.js
+// node_modules/.pnpm/@octokit+request@8.2.0/node_modules/@octokit/request/dist-node/index.js
 var require_dist_node5 = __commonJS({
-  "node_modules/.pnpm/@octokit+request@8.1.6/node_modules/@octokit/request/dist-node/index.js"(exports2, module2) {
+  "node_modules/.pnpm/@octokit+request@8.2.0/node_modules/@octokit/request/dist-node/index.js"(exports2, module2) {
     "use strict";
     var __defProp2 = Object.defineProperty;
     var __getOwnPropDesc2 = Object.getOwnPropertyDescriptor;
@@ -19735,7 +19735,7 @@ var require_dist_node5 = __commonJS({
     module2.exports = __toCommonJS2(dist_src_exports);
     var import_endpoint = require_dist_node2();
     var import_universal_user_agent = require_dist_node();
-    var VERSION = "8.1.6";
+    var VERSION = "8.2.0";
     function isPlainObject(value) {
       if (typeof value !== "object" || value === null)
         return false;
@@ -19871,11 +19871,17 @@ var require_dist_node5 = __commonJS({
     function toErrorMessage(data) {
       if (typeof data === "string")
         return data;
+      let suffix;
+      if ("documentation_url" in data) {
+        suffix = ` - ${data.documentation_url}`;
+      } else {
+        suffix = "";
+      }
       if ("message" in data) {
         if (Array.isArray(data.errors)) {
-          return `${data.message}: ${data.errors.map(JSON.stringify).join(", ")}`;
+          return `${data.message}: ${data.errors.map(JSON.stringify).join(", ")}${suffix}`;
         }
-        return data.message;
+        return `${data.message}${suffix}`;
       }
       return `Unknown error: ${JSON.stringify(data)}`;
     }
