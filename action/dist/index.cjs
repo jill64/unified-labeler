@@ -22440,9 +22440,9 @@ var require_dist_node9 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@octokit+plugin-paginate-rest@9.1.5_@octokit+core@5.1.0/node_modules/@octokit/plugin-paginate-rest/dist-node/index.js
+// node_modules/.pnpm/@octokit+plugin-paginate-rest@9.2.0_@octokit+core@5.1.0/node_modules/@octokit/plugin-paginate-rest/dist-node/index.js
 var require_dist_node10 = __commonJS({
-  "node_modules/.pnpm/@octokit+plugin-paginate-rest@9.1.5_@octokit+core@5.1.0/node_modules/@octokit/plugin-paginate-rest/dist-node/index.js"(exports2, module2) {
+  "node_modules/.pnpm/@octokit+plugin-paginate-rest@9.2.0_@octokit+core@5.1.0/node_modules/@octokit/plugin-paginate-rest/dist-node/index.js"(exports2, module2) {
     "use strict";
     var __defProp2 = Object.defineProperty;
     var __getOwnPropDesc2 = Object.getOwnPropertyDescriptor;
@@ -22469,7 +22469,7 @@ var require_dist_node10 = __commonJS({
       paginatingEndpoints: () => paginatingEndpoints
     });
     module2.exports = __toCommonJS2(dist_src_exports);
-    var VERSION = "9.1.5";
+    var VERSION = "9.2.0";
     function normalizePaginatedListResponse(response) {
       if (!response.data) {
         return {
@@ -22620,6 +22620,8 @@ var require_dist_node10 = __commonJS({
       "GET /orgs/{org}/members/{username}/codespaces",
       "GET /orgs/{org}/migrations",
       "GET /orgs/{org}/migrations/{migration_id}/repositories",
+      "GET /orgs/{org}/organization-roles/{role_id}/teams",
+      "GET /orgs/{org}/organization-roles/{role_id}/users",
       "GET /orgs/{org}/outside_collaborators",
       "GET /orgs/{org}/packages",
       "GET /orgs/{org}/packages/{package_type}/{package_name}/versions",
