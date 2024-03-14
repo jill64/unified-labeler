@@ -22930,14 +22930,14 @@ var require_github = __commonJS({
   }
 });
 
-// node_modules/.pnpm/octoflare@0.24.17/node_modules/octoflare/dist/action/action.js
+// node_modules/.pnpm/octoflare@0.24.18/node_modules/octoflare/dist/action/action.js
 var import_core = __toESM(require_core(), 1);
 var import_github = __toESM(require_github(), 1);
 
-// node_modules/.pnpm/octoflare@0.24.17/node_modules/octoflare/dist/utils/limitStr.js
+// node_modules/.pnpm/octoflare@0.24.18/node_modules/octoflare/dist/utils/limitStr.js
 var limitStr = (str, num) => str.length > num ? `${str.substring(0, num)}...` : str;
 
-// node_modules/.pnpm/octoflare@0.24.17/node_modules/octoflare/dist/utils/errorLogging.js
+// node_modules/.pnpm/octoflare@0.24.18/node_modules/octoflare/dist/utils/errorLogging.js
 var errorLogging = async ({ octokit, repo, owner, error, info }) => {
   try {
     const errorTitle = `Octoflare Error: ${limitStr(error.message, 64)}`;
@@ -22984,7 +22984,7 @@ ${error.stack}
   }
 };
 
-// node_modules/.pnpm/octoflare@0.24.17/node_modules/octoflare/dist/utils/updateChecks.js
+// node_modules/.pnpm/octoflare@0.24.18/node_modules/octoflare/dist/utils/updateChecks.js
 var updateChecks = ({ kit, check_run_id, owner, repo, conclusion, output, details_url, status }) => kit.rest.checks.update({
   check_run_id,
   owner,
@@ -23000,7 +23000,7 @@ var updateChecks = ({ kit, check_run_id, owner, repo, conclusion, output, detail
   } : void 0
 });
 
-// node_modules/.pnpm/octoflare@0.24.17/node_modules/octoflare/dist/action/action.js
+// node_modules/.pnpm/octoflare@0.24.18/node_modules/octoflare/dist/action/action.js
 var action = async (handler, options) => {
   const { skipTokenRevocation } = options ?? {};
   const payloadStr = import_core.default.getInput("payload", { required: true });
