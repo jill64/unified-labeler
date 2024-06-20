@@ -16,6 +16,6 @@
     "esbuild": "0.21.5",
     "@jill64/prettier-config": "1.0.0",
     "@jill64/eslint-config-ts": "1.1.26",
-    "typescript": "5.4.5"
+    "typescript": "5.5.2"
   }
 }
