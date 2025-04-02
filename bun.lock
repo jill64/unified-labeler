@@ -7,7 +7,7 @@
         "@jill64/eslint-config-ts": "2.0.21",
         "@jill64/prettier-config": "1.0.0",
         "esbuild": "0.25.2",
-        "octoflare": "2.1.9",
+        "octoflare": "2.1.10",
         "typescript": "5.8.2",
       },
     },
@@ -23,7 +23,7 @@
 
     "@actions/io": ["@actions/io@1.1.3", "", {}, "sha512-wi9JjgKLYS7U/z8PPbco+PvTb/nRWjeoFlJ1Qer83k/3C5PHQi28hiVdeE2kHXmIL99mQFawx8qt/JPjZilJ8Q=="],
 
-    "@cloudflare/workers-types": ["@cloudflare/workers-types@4.20250327.0", "", {}, "sha512-rkoGnSY/GgBLCuhjZMIC3mt0jjqqvL17uOK92OI4eivmE+pMFOAchowDxIWOzDyYe5vwNCakbCeIM/FrSmwGJA=="],
+    "@cloudflare/workers-types": ["@cloudflare/workers-types@4.20250401.0", "", {}, "sha512-AnOR0giXB/Y3RN6DgZJtBqnDNeOdb019BUOUhq6VhwyT3exoCjkBY+gXg16S2uyhlgiwqCCADW8CNBh51ObPzA=="],
 
     "@esbuild/aix-ppc64": ["@esbuild/aix-ppc64@0.25.2", "", { "os": "aix", "cpu": "ppc64" }, "sha512-wCIboOL2yXZym2cgm6mlA742s9QeJ8DjGVaL39dLN4rRwrOgOyYSnOaFPhKZGLb2ngj4EyfAFjsNJwPXZvseag=="],
 
@@ -321,7 +321,7 @@
 
     "natural-compare": ["natural-compare@1.4.0", "", {}, "sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw=="],
 
-    "octoflare": ["octoflare@2.1.9", "", { "dependencies": { "@actions/core": "1.11.1", "@actions/github": "6.0.0", "@cloudflare/workers-types": "4.20250327.0", "@octokit/webhooks-types": "7.6.1", "octokit": "4.1.2" } }, "sha512-NlkFuYYHXJ3Kek6kuqCmjxCKAS13lpflUFDVfbpt/V2vHWtIsEr4+4NWclB5Ni0nNQKPkQINDpGwZsgKV/FqSg=="],
+    "octoflare": ["octoflare@2.1.10", "", { "dependencies": { "@actions/core": "1.11.1", "@actions/github": "6.0.0", "@cloudflare/workers-types": "4.20250401.0", "@octokit/webhooks-types": "7.6.1", "octokit": "4.1.2" } }, "sha512-vKd7Qno8RBBg1KJ0O/nVnJHS+XHSvm0sr2Bly/AWYXsmWW08HPAVHSPhtfTzvR7OHakpi3Sr6SPK926wnCwyhA=="],
 
     "octokit": ["octokit@4.1.2", "", { "dependencies": { "@octokit/app": "^15.1.4", "@octokit/core": "^6.1.4", "@octokit/oauth-app": "^7.1.6", "@octokit/plugin-paginate-graphql": "^5.2.4", "@octokit/plugin-paginate-rest": "^11.4.2", "@octokit/plugin-rest-endpoint-methods": "^13.3.1", "@octokit/plugin-retry": "^7.1.4", "@octokit/plugin-throttling": "^9.4.0", "@octokit/request-error": "^6.1.7", "@octokit/types": "^13.7.0" } }, "sha512-0kcTxJOK3yQrJsRb8wKa28hlTze4QOz4sLuUnfXXnhboDhFKgv8LxS86tFwbsafDW9JZ08ByuVAE8kQbYJIZkA=="],
 
