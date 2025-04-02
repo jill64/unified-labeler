@@ -12,7 +12,7 @@
   },
   "prettier": "@jill64/prettier-config",
   "devDependencies": {
-    "octoflare": "2.1.9",
+    "octoflare": "2.1.10",
     "esbuild": "0.25.2",
     "@jill64/prettier-config": "1.0.0",
     "@jill64/eslint-config-ts": "2.0.21",
