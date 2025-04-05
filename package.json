@@ -15,7 +15,7 @@
     "octoflare": "2.1.13",
     "esbuild": "0.25.2",
     "@jill64/prettier-config": "1.0.0",
-    "@jill64/eslint-config-ts": "2.0.22",
+    "@jill64/eslint-config-ts": "2.0.23",
     "typescript": "5.8.2"
   }
 }
